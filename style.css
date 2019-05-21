@@ -1,0 +1,164 @@
+:root {
+    --light-color: #EAEAEA;
+/* 
+    Feel free to change the value of '--toggle-size' in order to justify the toggle sizes to Your demands ^-^
+    Relative and absolute values are available to use :D
+    
+    Extra note: Those toggles can be used either as a checkboxes or radio buttons :)
+*/
+    --toggle-size: 7vw;
+    --default-toggle-color: hsl(220, 75%, 60%);
+    --toggle-border-color: hsl(0, 0%, 75%);
+    --inner-toggle-color: var(--light-color);
+
+/* 
+    Colors
+*/
+    --red-color: hsl(0, 75%, 60%);
+    --orange-color: hsl(40, 85%, 60%);
+    --yellow-color: hsl(60, 70%, 55%);
+    --green-color: hsl(105, 75%, 60%);
+    --marine-color: hsl(180, 75%, 60%);
+    --blue-color: hsl(220, 75%, 60%);
+    --violet-color: hsl(280, 75%, 60%);
+    --pink-color: hsl(310, 75%, 60%);
+
+    
+    --dark-red-color: hsl(0, 75%, 45%);
+    --dark-orange-color: hsl(40, 85%, 45%);
+    --dark-yellow-color: hsl(60, 70%, 45%);
+    --dark-green-color: hsl(105, 75%, 45%);
+    --dark-marine-color: hsl(180, 75%, 45%);
+    --dark-blue-color: hsl(220, 75%, 45%);
+    --dark-violet-color: hsl(280, 75%, 45%);
+    --dark-pink-color: hsl(310, 75%, 45%);
+}
+/*
+    Styles of the elements alignment
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: var(--light-color);
+    user-select: none;
+    font-family: Helvetica, sans-serif;
+}
+.items-container {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: row;
+}
+.items-container .toggle-container:not(:last-of-type) {
+    margin-right: calc(var(--toggle-size) * .25);
+}
+/* 
+    Toggle styles are applied here
+*/
+.items-container .toggle-container {
+    position: relative;
+    display: inline-block;
+}
+.items-container .toggle-container input:not([type="text"]) {
+    display: none;
+}
+.items-container .toggle-container .toggle {
+    position: relative;
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    background-color: var(--toggle-border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    animation: uncheckedToggle linear 150ms 2;
+    /*
+        Just making sure, that the box-shadow will be scalable.
+        I know that the calculations below may seems a little bit odd xDD
+    */
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) hsl(0, 0%, 71%);
+    transition: all 500ms cubic-bezier(.26,1.11,.61,1.04);
+}
+.items-container .toggle-container .toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--inner-toggle-color);
+    width: calc(var(--toggle-size) * .85);
+    height: calc(var(--toggle-size) * .85);
+    border-radius: 50%;
+    transition: all 500ms cubic-bezier(.26,1.11,.61,1.04);
+}
+.items-container .toggle-container input:not(:checked) + .toggle:active::before, 
+.items-container .toggle-container input:not(:checked) + .toggle:focus::before {
+    width: calc(var(--toggle-size) * .75);
+    height: calc(var(--toggle-size) * .75);
+}
+.items-container .toggle-container input:checked ~ .toggle {
+    background-color: var(--default-toggle-color);
+}
+.items-container .toggle-container input:checked ~ .toggle::before {
+    width: calc(var(--toggle-size) * .25);
+    height: calc(var(--toggle-size) * .25);
+}
+.items-container .toggle-container input:checked + .toggle {
+    animation: checkedToggle linear 150ms 2;
+}
+/* 
+    Adjusting toggles background color to the class name
+*/
+.items-container .toggle-container input:checked ~ .toggle.red {
+    background-color: var(--red-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-red-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.orange {
+    background-color: var(--orange-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-orange-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.yellow {
+    background-color: var(--yellow-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-yellow-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.green {
+    background-color: var(--green-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-green-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.marine {
+    background-color: var(--marine-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-marine-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.blue {
+    background-color: var(--blue-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-blue-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.violet {
+    background-color: var(--violet-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-violet-color);
+}
+.items-container .toggle-container input:checked ~ .toggle.pink {
+    background-color: var(--pink-color) !important;
+    box-shadow: calc(var(--toggle-size) / 92 * -5) calc(var(--toggle-size) / 92 * 3) 0 calc(var(--toggle-size) / 92 * 3) var(--dark-pink-color);
+}
+/* 
+    Making a little pulse animation
+*/
+@keyframes checkedToggle {
+    0% {
+        transform: scale(.95);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+@keyframes uncheckedToggle {
+    0% {
+        transform: scale(.95);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
